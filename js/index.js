@@ -1,5 +1,6 @@
 const time = document.querySelector('.time'),
-      dateElement = document.querySelector('.date')
+      dateElement = document.querySelector('.date'),
+      greeting = document.querySelector('.greeting')
     
 
 // TIME and DATE
@@ -23,3 +24,31 @@ function showDate() {
     setTimeout(showDate, 1000)
 }
 showDate()
+
+// Greeting
+let greetingText
+
+function timeOfDay() {
+    const date = new Date()
+    const hour = date.getHours()
+
+    if(hour >= 5 && hour < 12) {
+        greetingText = 'morning'
+    } else if (hour >= 12 && hour < 17) {
+        greetingText = 'afternoon'
+    } else if (hour >= 17 && hour < 22) {
+        greetingText = 'evening'
+    } else if (hour >= 22 && hour < 5) {
+        greetingText = 'night'
+    }
+}
+
+timeOfDay()
+
+function showGreeting() {
+
+        greeting.textContent = `Good ${greetingText}`
+        console.log(greetingText)
+    
+}
+showGreeting()
