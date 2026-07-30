@@ -1,6 +1,7 @@
 const time = document.querySelector('.time'),
       dateElement = document.querySelector('.date'),
-      greeting = document.querySelector('.greeting')
+      greeting = document.querySelector('.greeting'),
+      nameInput = document.querySelector('.name')
     
 
 // TIME and DATE
@@ -52,3 +53,19 @@ function showGreeting() {
     
 }
 showGreeting()
+
+// Local Storage
+
+function setLocalStorage() {
+    localStorage.setItem("name", nameInput.value)
+}
+window.addEventListener("beforeunload", setLocalStorage)
+
+function getLocalStorage() {
+    const nameFromLS = localStorage.getItem("name")
+
+    if (nameFromLS !== null) {
+        nameInput.value = nameFromLS
+    }
+}
+window.addEventListener("load", getLocalStorage)
