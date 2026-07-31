@@ -2,7 +2,9 @@ const time = document.querySelector('.time'),
       dateElement = document.querySelector('.date'),
       greeting = document.querySelector('.greeting'),
       nameInput = document.querySelector('.name'),
-      body = document.querySelector('body')
+      body = document.querySelector('body'),
+      prev = document.querySelector('.slide-prev'),
+      next = document.querySelector('.slide-next')
     
 
 // TIME and DATE
@@ -72,6 +74,52 @@ window.addEventListener("load", getLocalStorage)
 
 // Slider
 
-body.style.backgroundImage = 
-    "url('/assets/img/afternoon/03.jpg')"
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+let currentImage = getRandomInt(1, 20)
+
+
+
+function setBg() {
+    const timeOfDay = getTimeOfDay()
+    const imageNumber = String(currentImage).padStart(2, '0');
+    const imagePath = `./assets/img/${timeOfDay}/${imageNumber}.jpg`
+    const img = new Image()
+    img.src = imagePath
+
+    img.onload = () => {
+        body.style.backgroundImage = 
+        `url('${imagePath}')`
+    }
+}
+setBg()
+
+function getSlidePrev() {
+
+    prev.addEventListener("click", () => {
+
+        currentImage--
+
+        if(currentImage < 1) {
+            currentImage = 20
+        }
+        setBg()  
+    })
+}
+getSlidePrev()
+
+function getSlideNext() {
+
+    next.addEventListener("click", () => {
+
+        currentImage++
+
+        if(currentImage > 20) {
+            currentImage = 1
+        }
+    setBg()  
+    })
+}
+getSlideNext()
