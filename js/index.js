@@ -1,7 +1,8 @@
 const time = document.querySelector('.time'),
       dateElement = document.querySelector('.date'),
       greeting = document.querySelector('.greeting'),
-      nameInput = document.querySelector('.name')
+      nameInput = document.querySelector('.name'),
+      body = document.querySelector('body')
     
 
 // TIME and DATE
@@ -27,28 +28,29 @@ function showDate() {
 showDate()
 
 // Greeting
-let greetingText
 
-function timeOfDay() {
+function getTimeOfDay() {
     const date = new Date()
     const hour = date.getHours()
 
     if(hour >= 6 && hour < 12) {
-        greetingText = 'morning'
+        return 'morning'
     } else if (hour >= 12 && hour < 18) {
-        greetingText = 'afternoon'
+        return 'afternoon'
     } else if (hour >= 18 && hour < 24) {
-        greetingText = 'evening'
+        return 'evening'
     } else {
-        greetingText = 'night'
+        return 'night'
     }
+    
 }
 
 function showGreeting() {
-    timeOfDay()
+    const greetingText = getTimeOfDay()
     greeting.textContent = `Good ${greetingText}`
     
 }
+showGreeting()
 setInterval(showGreeting, 60000)
 
 
@@ -67,3 +69,9 @@ function getLocalStorage() {
     }
 }
 window.addEventListener("load", getLocalStorage)
+
+// Slider
+
+body.style.backgroundImage = 
+    "url('/assets/img/afternoon/03.jpg')"
+
